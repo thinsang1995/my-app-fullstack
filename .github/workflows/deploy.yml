@@ -29,6 +29,11 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/my-nextjs-app:latest
 
+    - name: Add SSH key
+      uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
+
     - name: SSH into server and deploy
       uses: appleboy/ssh-action@v0.1.4
       with:
@@ -36,6 +41,7 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
+          echo "Pulling the latest Docker image..."
           docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/my-nextjs-app:latest
           docker-compose down
           docker-compose up -d
