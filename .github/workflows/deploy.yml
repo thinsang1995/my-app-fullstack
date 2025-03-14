@@ -34,6 +34,11 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
 
+    - name: Debug SSH connection
+      run: |
+        echo "Trying to connect to server..."
+        ssh -o StrictHostKeyChecking=no -v ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} "echo 'Connected successfully!'"
+
     - name: SSH into server and deploy
       uses: appleboy/ssh-action@v0.1.4
       with:
