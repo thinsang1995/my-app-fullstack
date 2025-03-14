@@ -12,7 +12,8 @@
     "postinstall": "prisma generate",
     "seed": "node --loader ts-node/esm prisma/seed.ts",
     "db:reset": "prisma migrate reset --force",
-    "studio": "prisma studio"
+    "studio": "prisma studio",
+    "migrate": "prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "6.4.1",
