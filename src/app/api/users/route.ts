@@ -6,7 +6,7 @@ export async function GET() {
   return NextResponse.json(users)
 }
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   const { email, name } = await req.json()
   const newUser = await prisma.user.create({
     data: {
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   return NextResponse.json(newUser, { status: 201 })
 }
 
-export async function PUT(req: NextRequest, res: NextResponse) {
+export async function PUT(req: NextRequest) {
   const { id, email, name } = await req.json()
   if (!id) return NextResponse.json({ error: 'ID is required' }, { status: 400 })
 
