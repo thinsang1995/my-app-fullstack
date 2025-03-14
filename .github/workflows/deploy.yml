@@ -39,6 +39,11 @@ jobs:
         echo "Trying to connect to server..."
         ssh -o StrictHostKeyChecking=no -v ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} "echo 'Connected successfully!'"
 
+    - name: SSH Debug
+      run: |
+        ssh-add -l
+        ls -la ~/.ssh    
+
     - name: SSH into server and deploy
       uses: appleboy/ssh-action@v0.1.4
       env:
@@ -47,6 +52,7 @@ jobs:
         host: ${{ secrets.SERVER_HOST }}
         username: ${{ secrets.SERVER_USERNAME }}
         key: ${{ secrets.SERVER_SSH_KEY }}
+        key-path: /home/runner/.ssh/id_rsa
         script: |
           echo "Pulling the latest Docker image..."
           docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/my-nextjs-app:latest
