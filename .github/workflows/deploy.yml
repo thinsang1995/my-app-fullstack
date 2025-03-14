@@ -56,5 +56,5 @@ jobs:
           cd /home/username/my-nextjs-app
           docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/my-nextjs-app:latest
           docker-compose down
-          docker-compose up -d
+          docker-compose up -d app db nginx
           docker-compose exec app yarn migrate
