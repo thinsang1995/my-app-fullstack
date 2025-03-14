@@ -1,5 +1,5 @@
 # Build stage
-FROM node:16 AS builder
+FROM node:20 AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY . .
 RUN yarn build
 
 # Production stage
-FROM node:16
+FROM node:20
 
 WORKDIR /app
 
