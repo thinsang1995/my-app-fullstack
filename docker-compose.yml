@@ -3,7 +3,7 @@ version: '3.8'
 services:
   app:
     build: .
-    image: ${{ secrets.DOCKER_HUB_USERNAME }}/my-nextjs-app:latest
+    image: ${DOCKER_HUB_USERNAME}my-nextjs-app:latest
     volumes:
       - .:/app
     ports:
