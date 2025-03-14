@@ -29,7 +29,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: $DOCKER_HUB_USERNAME/my-nextjs-app:latest
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/my-nextjs-app:latest
 
     - name: Add SSH key
       uses: webfactory/ssh-agent@v0.7.0
